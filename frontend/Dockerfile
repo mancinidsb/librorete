@@ -1,7 +1,7 @@
 # Usa uma imagem Node.js oficial como base para construir a aplicação
 #FROM node:18-alpine AS build
 
-FROM node:20-alpine AS build
+FROM node:22.11-alpine3.19 AS build
 
 # RUN npm init
 # WORKDIR /app
@@ -12,15 +12,17 @@ FROM node:20-alpine AS build
 COPY package.json ./
 COPY package-lock.json ./
 # COPY package.json ./
+# COPY package.json ./
 # RUN npm install --force --loglevel verbose
 
 # RUN npm install --force --loglevel verbose
 
 RUN npm ci --force --loglevel verbose
+RUN npm ci --force --loglevel verbose
 
-RUN npm install webpack-dev-server@latest --save-dev
-RUN npm install @babel/plugin-proposal-private-property-in-object --save-dev
-#--force --loglevel verbose
+# RUN npm install webpack-dev-server@latest --save-dev
+# RUN npm install @babel/plugin-proposal-private-property-in-object --save-dev
+# #--force --loglevel verbose
 # COPY public /public
 # RUN ls
 # Usa uma imagem Nginx para servir a aplicação
