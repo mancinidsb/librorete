@@ -13,5 +13,5 @@ RUN pip install django-cors-headers
 
 EXPOSE 8000
 
-# CMD [ "python", "backend/app/manage.py", "runserver", "0.0.0.0:8000"]
+CMD [ "python", "backend/app/manage.py", "runserver", "0.0.0.0:8000"]
 # CMD ["ls"]
