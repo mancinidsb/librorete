@@ -15,9 +15,9 @@
 <h2>Introdução</h2>
 <p>Repositório para "dockerizar" o projeto <a href="https://github.com/ES2-UFPI/LibroRete">LibroRete</a> que possui as seguintes tecnologias:</p>
 
-* React 
-* Django
-* Mysql
+* <a href="https://react.dev/">React</a> 
+* <a href="https://www.djangoproject.com/">Django</a> 
+* <a href="https://www.mysql.com/">Mysql</a> 
   
 <h2>Instalação</h2>
 
