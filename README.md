@@ -79,6 +79,107 @@ O motivo disto é para evitar que um serviço precise de outro e este, esteja de
 
 Desse modo, caso o front faça uma requisição ao back, não ocorrerá uma falha de comunicação.
 
+<h2>Acessar o Banco De Dados</h2>
+
+Existem algumas maneiras de acessar o banco de dados: pelo CMD (no Windows), pelo Docker Desktop ou pelo MySQL Workbench. <br>
+Para qualquer um dos métodos, é **necessário** que o Docker e os containers do projeto estejam ativos.
+
+<h3>Usando CMD(Windows)</h3>
+
+Com o CMD aberto, digite: ```docker exec -it librorete-db-1 /bin/sh```<br>
+Esse comando abrirá o terminal vinculado ao container que contém o banco de dados.
+
+
+![image](https://github.com/user-attachments/assets/6f88ed73-c262-444b-8cdd-3388b875bd55)
+
+Para acessar o Mysql digite: ```mysql -u <usuário> -p```<br>
+No espaço ```<usuário>``` digite o usuário criado no arquivo **.env** na variável **MYSQL_USER**<br>
+Lembre-se que o usuário padrão é **root**
+
+
+![image](https://github.com/user-attachments/assets/6c159076-ce21-4666-aa86-16d343baab1f)
+
+
+Depois de inserir o comando, digite a senha vinculada ao usuário. Esta senha é a mesma do arquivo **.env** na variável: **MYSQL_PASSWORD**<br>
+
+Após isso, a seguinte tela será mostrada:
+
+![image](https://github.com/user-attachments/assets/ca38bbcf-5f48-4119-94a1-9a4e300c388f)
+
+Com isso, é possivel utilizar comandos SQL<br>
+Como no exemplo abaixo, é utilizado o comando ```SHOW DATABASES;``` que mostrará as *Databases* que estam inseridas no container.
+
+![image](https://github.com/user-attachments/assets/a7384807-0c0f-4a21-90b5-95f14f91a2a6)
+
+
+<h3>Usando o Docker Desktop</h3>
+
+Abra o Docker Desktop e, com os containers ativos, clique no container **db-1**.
+
+![image](https://github.com/user-attachments/assets/555d4af6-8161-4904-ad50-2a1d1dcd3cee)
+
+
+Vá para o aba **exec**
+
+![image](https://github.com/user-attachments/assets/551b9aa9-d104-4edb-b389-45a2d4b42b9d)
+
+
+Digite o comando: ```mysql -u <usuário> -p``` e após digitar a senha vinculada ao usuário, será possível executar comandos SQL<br>
+Por exemplo:
+
+![image](https://github.com/user-attachments/assets/a80cb5b6-a5aa-414a-8a0f-ee3951248955)
+
+
+
+<h3>Usando o MySQL Workbench</h3>
+
+
+Primeiramente, baixe e instale o MySQL Workbench pelo seu <a href="https://dev.mysql.com/downloads/workbench/">site oficial</a>.
+
+Com o MySQL Workbench aberto, clique no ícone de "+" para criar uma nova conexão<br>
+
+![image](https://github.com/user-attachments/assets/fbfc6991-f1c3-4b2f-ba84-0ad844276c3d)
+ 
+Insira um nome para a sua conexão e o usuário, e em seguida clique em "ok"
+
+![image](https://github.com/user-attachments/assets/a2cb01fb-f65c-4fb4-ad3a-3748fee22ab2)
+
+Será criada uma nova conexão, clique nela para abri-lá
+
+![image](https://github.com/user-attachments/assets/bcac0c83-acdd-40ec-97f3-e30ec246165f)
+
+Em seguida, digite a senha correspondente ao usuário
+
+![image](https://github.com/user-attachments/assets/c1ff1f43-e5d5-4b0f-a37e-6610df1aeba2)
+
+Após isso, será possivel digitar comandos SQL
+
+![image](https://github.com/user-attachments/assets/df1149d9-00ed-4b8b-87d1-0028b8cb8383)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
