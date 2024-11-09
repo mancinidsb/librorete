@@ -17,7 +17,7 @@ COPY package-lock.json ./
 
 # RUN npm install --force --loglevel verbose
 
-RUN npm ci --force --loglevel verbose
+# RUN npm ci --force --loglevel verbose
 RUN npm ci --force --loglevel verbose
 
 # RUN npm install webpack-dev-server@latest --save-dev
