@@ -1,3 +1,4 @@
+version: '3.9'
 
 services:
   db:
@@ -11,6 +12,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    
   
   backend:
     build: ./backend
@@ -21,10 +23,25 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
+    
+    command: > 
+      sh -c "
+      until nc -z db 3306; do
+        sleep 1;
+      done;
+      python backend/app/manage.py makemigrations;
+      python backend/app/manage.py migrate;
+      
+      
+
+      bash backend/app/super_user_create.sh;
+      
+
+      python backend/app/manage.py runserver 0.0.0.0:8000;
+
+      echo 'Database is ready! Starting Django server...';
+      "
+    
   
   frontend:
     build: ./frontend
@@ -35,6 +52,14 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    command: > 
+      sh -c "
+      until nc -z backend 8000; do
+        sleep 1;
+      done;
+      echo 'Backend is ready! Starting frontend ...';
+      npm start
+      "
 
 volumes:
   db_data:
