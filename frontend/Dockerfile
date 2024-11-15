@@ -9,8 +9,8 @@ FROM node:22.11-alpine3.19 AS build
 # RUN npm install @babel/plugin-proposal-private-property-in-object --save-dev
 # RUN npm install webpack@latest webpack-dev-server@latest react-scripts@latest --save-dev
 RUN apk update && apk add --no-cache netcat-openbsd
-COPY package.json ./
-COPY package-lock.json ./
+COPY app/package.json ./
+COPY app/package-lock.json ./
 # COPY package.json ./
 # COPY package.json ./
 # RUN npm install --force --loglevel verbose

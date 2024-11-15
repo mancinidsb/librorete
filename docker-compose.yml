@@ -34,7 +34,7 @@ services:
 
   frontend:
     build: ./frontend
-    working_dir: /frontend/frontend
+    working_dir: /frontend/frontend/app
     volumes:
       - .:/frontend
     ports:
