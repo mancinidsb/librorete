@@ -6,6 +6,11 @@ services:
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
+    #healthcheck:
+      #test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      #interval: 10s
+      #timeout: 5s
+      #retries: 5
     volumes:
       - db_data:/var/lib/mysql
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -19,6 +24,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    command: >
+      sh -c "
+        until nc -z db 3306; do
+          sleep 1;
+        done;
+        python backend/app/manage.py runserver 0.0.0.0:8000;
+      "
 
   frontend:
     build: ./frontend
@@ -29,6 +41,13 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    command: > 
+      sh -c "
+      until nc -z backend 8000; do
+        sleep 1;
+      done;
+      npm start
+      "
 
 volumes:
   db_data:

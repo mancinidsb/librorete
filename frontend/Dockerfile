@@ -8,7 +8,7 @@ FROM node:22.11-alpine3.19 AS build
 # WORKDIR /app/frontend/frontend
 # RUN npm install @babel/plugin-proposal-private-property-in-object --save-dev
 # RUN npm install webpack@latest webpack-dev-server@latest react-scripts@latest --save-dev
-
+RUN apk update && apk add --no-cache netcat-openbsd
 COPY package.json ./
 COPY package-lock.json ./
 # COPY package.json ./
@@ -31,4 +31,4 @@ RUN npm ci --force --loglevel verbose
 EXPOSE 3000
 # CMD ["cd", "/frontend", "&&", "ls"]
 # CMD ["sh", "-c", "ls"]
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
